@@ -1,4 +1,4 @@
-[
+export let blog = [
 {
 "postId": 1,
 "id": 1,
