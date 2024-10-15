@@ -4,10 +4,18 @@ import Category from './Category';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-red-600">Hello World</h1>
-      <Category></Category>
+    <>
+    <div className='py-[40px]'>
+      <div className='mx-width-[1320px] mx-auto'>
+        <div className='text-center text-[40px] font-bold mb-[30px]'>Our Products</div>
+        <div className='grid grid-cols-[30%_auto] gap-[20px]'>
+          <div>
+            <Category/>
+          </div>
+        </div>
+      </div>
     </div>
+    </>
   );
 }
 
