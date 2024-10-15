@@ -3,6 +3,12 @@ import "./App.css";
 import Category from "./Category";
 
 function App() {
+
+  let getCatagory =()=>{
+    axios.get('https://dummyjson.com/products/categories')
+    .then((res)=res.data)
+  } 
+  
   return (
     <>
       <div className="py-[40px]">
