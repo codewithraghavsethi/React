@@ -6,11 +6,12 @@ import { useState } from "react";
 
 function App() {
   let [fin, setFin] = useState([]);
+  let [finPro, setFinPro] = useState([]);
 
   let getCategory = () => {
     axios
       // .get('https://dummyjson.com/products/categories')
-      .get('https://dummyjson.com/products/category-list')
+      .get("https://dummyjson.com/products/category-list")
       .then((res) => res.data)
       .then((finalRes) => {
         // console.log(finalRes);
@@ -18,9 +19,30 @@ function App() {
       });
   };
 
+  let getProducts = () => {
+    axios
+      // .get("https://dummyjson.com/products")
+      .get('https://dummyjson.com/products')
+      .then((res) => res.data)
+      .then((finalRes) => {
+        // console.log(finalRes)
+        setFinPro(finalRes.products);
+      });
+  };
+
   useEffect(() => {
     getCategory();
   }, []);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  let Pitems = finPro.map((products, i) => {
+    return (
+    <ProductsItem key={i} pdata={products} />
+  )
+  });
 
   return (
     <>
@@ -34,14 +56,7 @@ function App() {
               <Category fin={fin} />
             </div>
             <div>
-              <div className="grid grid-cols-3 gap-20">
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-              </div>
+              <div className="grid grid-cols-3 gap-20">{Pitems}</div>
             </div>
           </div>
         </div>
@@ -52,14 +67,13 @@ function App() {
 
 export default App;
 
-function ProductsItem() {
+function ProductsItem({pdata}) {
+  console.log(pdata);
   return (
     <div className="shadow-lg text-center pb-2">
-      <img
-        src="https://images-static.nykaa.com/creatives/393d3b1e-f813-41e4-a949-a5ea30e01d37/default.jpg?tr=cm-pad_resize,w-900"
-        alt=""
-      />
-      <h4>I Phone</h4>
+      <img src={pdata.thumbnail} alt=""  className="w-[100%] h-[220px]"/>
+      <h4>{pdata.title}</h4>
+      <b>{pdata.price}</b>
     </div>
   );
 }
