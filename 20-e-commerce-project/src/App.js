@@ -1,14 +1,25 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Category from "./Category";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function App() {
 
-  let getCatagory =()=>{
-    axios.get('https://dummyjson.com/products/categories')
-    .then((res)=res.data)
-  } 
+  let [finalCategory, setFinalCategory]=useState([]);
+
+  let getCategory = () => {
+    axios.get("https://dummyjson.com/products/categories")
+      .then((res) => res.data)
+      .then((finalRes) => {
+        setFinalCategory(finalRes);
+      });
+  };
   
+  useEffect(() => {
+    getCategory();
+  }, []);
+
   return (
     <>
       <div className="py-[40px]">
@@ -18,7 +29,7 @@ function App() {
           </h1>
           <div className="grid grid-cols-[30%_auto] gap-[20px]">
             <div>
-              <Category />
+              <Category finalCategory={finalCategory}/>
             </div>
             <div>
               <div className="grid grid-cols-3 gap-20">
