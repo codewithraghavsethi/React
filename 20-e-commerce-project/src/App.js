@@ -1,21 +1,23 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Category from "./Category";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-
-  let [finalCategory, setFinalCategory]=useState([]);
+  let [fin, setFin] = useState([]);
 
   let getCategory = () => {
-    axios.get("https://dummyjson.com/products/categories")
+    axios
+      // .get('https://dummyjson.com/products/categories')
+      .get('https://dummyjson.com/products/category-list')
       .then((res) => res.data)
       .then((finalRes) => {
-        setFinalCategory(finalRes);
+        // console.log(finalRes);
+        setFin(finalRes);
       });
   };
-  
+
   useEffect(() => {
     getCategory();
   }, []);
@@ -29,7 +31,7 @@ function App() {
           </h1>
           <div className="grid grid-cols-[30%_auto] gap-[20px]">
             <div>
-              <Category finalCategory={finalCategory}/>
+              <Category fin={fin} />
             </div>
             <div>
               <div className="grid grid-cols-3 gap-20">

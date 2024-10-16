@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Category({ finalCategory }){
+export default function Category({ fin }){
   
-  let cat=finalCategory.map((v, i) => {
+  let cat = fin.map((v,i) => {
     return (
       <li key={i} className="bg-gray-300 cursor-pointer p-[7px] text-[20px] font-serif font-semibold w-60 mb-2"> {v} </li>
     );
