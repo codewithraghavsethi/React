@@ -7,6 +7,8 @@ import { useState } from "react";
 function App() {
   let [fin, setFin] = useState([]);
   let [finPro, setFinPro] = useState([]);
+  let [catName, setCatName] = useState([]);
+
 
   let getCategory = () => {
     axios
@@ -22,7 +24,7 @@ function App() {
   let getProducts = () => {
     axios
       // .get("https://dummyjson.com/products")
-      .get('https://dummyjson.com/products')
+      .get("https://dummyjson.com/products")
       .then((res) => res.data)
       .then((finalRes) => {
         // console.log(finalRes)
@@ -38,10 +40,12 @@ function App() {
     getProducts();
   }, []);
 
+  useEffect(()=>{
+    console.log("hello");
+  },[catName]);
+
   let Pitems = finPro.map((products, i) => {
-    return (
-    <ProductsItem key={i} pdata={products} />
-  )
+    return <ProductsItem key={i} pdata={products} />;
   });
 
   return (
@@ -56,7 +60,9 @@ function App() {
               <Category fin={fin} />
             </div>
             <div>
-              <div className="grid grid-cols-3 gap-20">{Pitems}</div>
+              <div className="grid grid-cols-3 gap-5">
+                {finPro.length >= 1 ? Pitems : "No Product Found Raghav Sethi"}
+              </div>
             </div>
           </div>
         </div>
@@ -67,11 +73,11 @@ function App() {
 
 export default App;
 
-function ProductsItem({pdata}) {
-  console.log(pdata);
+function ProductsItem({ pdata }) {
+  // console.log(pdata);
   return (
     <div className="shadow-lg text-center pb-2">
-      <img src={pdata.thumbnail} alt=""  className="w-[100%] h-[220px]"/>
+      <img src={pdata.thumbnail} alt="" className="w-[100%] h-[220px]" />
       <h4>{pdata.title}</h4>
       <b>{pdata.price}</b>
     </div>
