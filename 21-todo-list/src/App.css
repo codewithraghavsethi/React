@@ -52,3 +52,36 @@ form input{
 form button{
   flex-basis: 20%;
 }
+
+.outer-div{
+  width: 1170px;
+  margin: auto;
+}
+
+.outer-div ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outer-div ul li{
+  color: white;
+  background-color: black;
+  text-align: left;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 25px;
+  position: relative;
+}
+
+.outer-div ul li span{
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+
+.complete{
+  text-decoration: line-through;
+  color: red !important;
+  background-color: yellow !important;
+}
