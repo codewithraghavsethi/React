@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Category({ fin }){
+export default function Category({ fin, setCatName }){
   
   let cat = fin.map((v,i) => {
     return (
-      <li key={i} className="bg-gray-300 cursor-pointer p-[7px] text-[20px] font-serif font-semibold w-60 mb-2"> {v} </li>
+      <li onClick={()=>setCatName(v)} key={i} className="bg-gray-100 cursor-pointer p-[7px] text-[20px] font-serif font-medium w-60 mb-2"> {v} </li>
     );
   });
 

@@ -7,7 +7,7 @@ import { useState } from "react";
 function App() {
   let [fin, setFin] = useState([]);
   let [finPro, setFinPro] = useState([]);
-  let [catName, setCatName] = useState([]);
+  let [catName, setCatName] = useState('');
 
 
   let getCategory = () => {
@@ -41,7 +41,17 @@ function App() {
   }, []);
 
   useEffect(()=>{
-    console.log("hello");
+    if(catName!==""){
+      // console.log("hello");
+      // console.log(finalRes)
+      // console.log(catName);
+      
+      axios.get(`https://dummyjson.com/products/category/${catName}`)
+      .then((res) => res.data)
+      .then((finalRes) => {
+        setFinPro(finalRes.products);
+      });
+    }
   },[catName]);
 
   let Pitems = finPro.map((products, i) => {
@@ -57,7 +67,7 @@ function App() {
           </h1>
           <div className="grid grid-cols-[30%_auto] gap-[20px]">
             <div>
-              <Category fin={fin} />
+              <Category fin={fin} setCatName={setCatName}/>
             </div>
             <div>
               <div className="grid grid-cols-3 gap-5">
