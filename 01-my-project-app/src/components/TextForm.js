@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 
 export default function TextForm(props) {
+
+  const [text, setText] = useState("");
+
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
@@ -12,7 +15,7 @@ export default function TextForm(props) {
     setText(newText);
   };
 
-  const handleClear =()=>{
+  const handleClear = () => { 
     let newText = "";
     setText(newText);
   }
@@ -21,7 +24,7 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
-  const [text, setText] = useState("");
+
   return (
     <>
       <div className="container">
@@ -52,9 +55,9 @@ export default function TextForm(props) {
       <div className="container my-3">
         <h2>Your Text Summry</h2>
         <p>
-          {text.split(" ").length} Word and {text.length} Characters
+          {text.split("").length } Word and {text.length} Characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes Read</p>
+        <p>{0.008 * text.split("").length } Minutes Read</p>
         <h2>Preview</h2>
         <p>{text}</p>
       </div>
